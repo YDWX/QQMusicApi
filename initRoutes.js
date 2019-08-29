@@ -7,9 +7,12 @@ const initRoutes = (app) => {
     if (err){
       return
     }
-    routes.forEach((file_path, index)=>{
-      const route = require(file_path)
-      const api = path.basename(file_path)
+    routes.forEach((filename, index)=>{
+      const route = require(path.join(dir, filename))
+      if (!(typeof route==='function' && route.name==='route')){
+        return
+      }
+      const api = `/${filename.replace(path.extname(filename), '')}`
       app.use(api, route)
     })
   })
