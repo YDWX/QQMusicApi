@@ -1,8 +1,9 @@
 # QQ音乐API
 > 所有api  jsonp格式都是可选的，jsonpCallback format等参数根据是否是jsonp而不同
 > _表示时间戳
+> 默认参数有：loginUin=0 hostUin=0 inCharset=utf8 outCharset=utf-8 platform=yqq needNewCode=0
 ### **推荐歌单**
-> GET https://u.y.qq.com/cgi-bin/musicu.fcg?g_tk=1278911659&loginUin=0&hostUin=0&inCharset=utf8&outCharset=utf-8¬ice=0&platform=yqq&needNewCode=0&format=json&data={"comm":{"ct":24},"category":{"method":"get_hot_category","param":{"qq":""},"module":"music.web_category_svr"},"recomPlaylist":{"method":"get_hot_recommend","param":{"async":1,"cmd":2},"module":"playlist.HotRecommendServer"},"playlist":{"method":"get_playlist_by_category","param":{"id":8,"curPage":1,"size":40,"order":5,"titleid":8},"module":"playlist.PlayListPlazaServer"},"new_song":{"module":"QQMusic.MusichallServer","method":"GetNewSong","param":{"type":0}},"new_album":{"module":"QQMusic.MusichallServer","method":"GetNewAlbum","param":{"type":0,"category":"-1","genre":0,"year":1,"company":-1,"sort":1,"start":0,"end":39}},"toplist":{"module":"music.web_toplist_svr","method":"get_toplist_index","param":{}},"focus":{"module":"QQMusic.MusichallServer","method":"GetFocus","param":{}}}
+> GET https://u.y.qq.com/cgi-bin/musicu.fcg?g_tk=1278911659&data={"comm":{"ct":24},"category":{"method":"get_hot_category","param":{"qq":""},"module":"music.web_category_svr"},"recomPlaylist":{"method":"get_hot_recommend","param":{"async":1,"cmd":2},"module":"playlist.HotRecommendServer"},"playlist":{"method":"get_playlist_by_category","param":{"id":8,"curPage":1,"size":40,"order":5,"titleid":8},"module":"playlist.PlayListPlazaServer"},"new_song":{"module":"QQMusic.MusichallServer","method":"GetNewSong","param":{"type":0}},"new_album":{"module":"QQMusic.MusichallServer","method":"GetNewAlbum","param":{"type":0,"category":"-1","genre":0,"year":1,"company":-1,"sort":1,"start":0,"end":39}},"toplist":{"module":"music.web_toplist_svr","method":"get_toplist_index","param":{}},"focus":{"module":"QQMusic.MusichallServer","method":"GetFocus","param":{}}}
 
 
 使用`JSONP`形式还要加上以下`query`：`callback=recom3477297233556247`、`jsonpCallback=recom3477297233556247`，`format=json`改为`format=jsonp`
@@ -12,7 +13,7 @@
 |--|--|
 |format|数据格式|
 |jsonpCallback|jsonp回调函数名|
-
+|data|请求参数|
 ### **歌曲详情**
 > GET https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg?type=1&json=1&utf8=1&onlysong=0&format=jsonp&g_tk=5381&jsonpCallback=playlistinfoCallback&loginUin=0&hostUin=0&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&disstid=3602407677
 
@@ -123,6 +124,8 @@
 |format|数据格式（可选）|
 |jsonpCallback|jsonp回调函数名（可选）|
 
+注：topid 有以下几个取值，可能还有其他的
+> 3：欧美榜，4：流行指数，5：内地榜，16：韩国榜，26：热门歌曲，27：最新音乐，29：影视金曲，35：分享榜，36：随机推荐，52：原创榜
 ### **热搜**
 > GET https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg?g_tk=5381&uin=0&format=jsonp&jsonpCallback=callback&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&_=1513317614040
 
