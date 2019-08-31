@@ -67,7 +67,7 @@ const createRequest = (method, uri, headers, data) => {
     method,
     uri,
     headers,
-    // json: true
+    json: true
   }
   Object.assign(data, preParams)
   if (method==='GET') {
