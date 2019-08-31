@@ -1,9 +1,9 @@
-var express = require('express')
-var router = express.Router()
+/* GET home page. */
+const consRouter = (router, request) => {
+  router.get('/', function(req, res, next) {
+    res.send('respond with a resource')
+  })
+  return router
+}
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource')
-})
-
-module.exports = router
+module.exports = consRouter

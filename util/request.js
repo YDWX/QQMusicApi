@@ -67,6 +67,7 @@ const createRequest = (method, uri, headers, data) => {
     method,
     uri,
     headers,
+    // json: true
   }
   Object.assign(data, preParams)
   if (method==='GET') {
@@ -75,16 +76,15 @@ const createRequest = (method, uri, headers, data) => {
     options['body'] = data
   }
   const resp = {
-    status: 200,
-    body: {},
+    header: {},
+    body: {code: 200, data: {}, msg: null}
   }
   return new Promise((resolve, reject) => {
     rp(options).then((res)=>{
-      resp.body = {code: 200, data: res}
+      resp.body = {code: 200, data: res, msg: 'get success'}
       resolve(resp)
     }).catch((err)=>{
-      resp.status = 500
-      resp.body = {code: 500, msg: err, data: null}
+      resp.body = {code: 500, data: null, msg: err}
       reject(resp)
     })
   })
