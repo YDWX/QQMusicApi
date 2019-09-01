@@ -14,7 +14,8 @@ let preParams = {
   outCharset: 'utf-8',
   platform: 'yqq',
   needNewCode: 0,
-  format: 'json'
+  format: 'json',
+  notice: 0
 }
 
 const UAGenerator = () => {
@@ -77,14 +78,19 @@ const createRequest = (method, uri, headers, data) => {
   }
   const resp = {
     header: {},
-    body: {code: 200, data: {}, msg: null}
+    body: {code: 500, data: null, msg: null}
   }
   return new Promise((resolve, reject) => {
-    rp(options).then((res)=>{
-      resp.body = {code: 200, data: res, msg: 'get success'}
+    rp(options).then((QQRes)=>{
+      if (QQRes.code !== 0){
+        resp.body.msg = 'API get failed'
+        reject(resp)
+      }
+      // res结构 {code:0, data: {}, message: '', notice: '', tips: ''}
+      resp.body = {code: 200, data: QQRes.data, msg: 'get success'}
       resolve(resp)
     }).catch((err)=>{
-      resp.body = {code: 500, data: null, msg: err}
+      resp.body.msg = err
       reject(resp)
     })
   })

@@ -18,15 +18,15 @@ const consRouter = (router, request) => {
     _: (new Date()).getTime()
   }
   router.get('/', (req, res, next)=>{
-    let {word, pageNum, count} = req.query
+    let {word, pageNum, pagesize} = req.query
     pageNum = pageNum>=0? pageNum:0
-    count = count>=20? count:20
+    pagesize = pagesize>=20? pagesize:20
     if (!word) {
-      res.status(400).json({code: 400, body:null, msg: 'no keyword'})
+      res.status(400).json({code: 400, body:null, msg: 'no keyword word'})
     }
     data['w'] = word
     data['p'] = parseInt(pageNum)
-    data['n'] = parseInt(count)
+    data['n'] = parseInt(pagesize)
     request('GET', uri, {}, data).then((resp)=>{
       res.status(200).json(resp.body)
     }).catch((err)=>{
