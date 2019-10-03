@@ -1,3 +1,4 @@
+// 热搜
 const consRouter = (router, request) => {
   const uri = 'https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg'
   const data = {

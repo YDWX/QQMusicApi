@@ -1,3 +1,4 @@
+// 搜索
 const consRouter = (router, request) => {
   const uri = 'https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp'
   const data = {

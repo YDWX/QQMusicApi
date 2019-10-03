@@ -1,3 +1,4 @@
+// 专辑详情
 const consRouter = (router, request) => {
   const uri = 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_album_info_cp.fcg'
   const data = {
