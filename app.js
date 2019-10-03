@@ -36,7 +36,9 @@ app.use(lessMiddleware(path.join(__dirname, 'public')))
 app.use(express.static(path.join(__dirname, 'public')))
 
 // cache
-app.use(cache('2 minutes', ((req, res) => res.statusCode === 200)))
+if (process.env.NODE_ENV === 'development') {
+  // app.use(cache('2 minutes', ((req, res) => res.statusCode === 200)))
+}
 
 // cookie处理
 // app.use((req, res, next) => {
