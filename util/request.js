@@ -10,7 +10,7 @@ const rp = require('request-promise')
 let preParams = {
   loginUin: 0,
   hostUin: 0,
-  inCharset: 'utf8',
+  inCharset: 'utf-8',
   outCharset: 'utf-8',
   platform: 'yqq',
   needNewCode: 0,
@@ -85,9 +85,15 @@ const createRequest = (method, uri, headers, data) => {
       if (QQRes.code !== 0){
         resp.body.msg = 'API get failed'
         reject(resp)
+        return
       }
+      let data = QQRes.data
       // res结构 {code:0, data: {}, message: '', notice: '', tips: ''}
-      resp.body = {code: 200, data: QQRes.data, msg: 'get success'}
+      // 对QQRes的处理，有的响应中没有data属性
+      if (!QQRes.hasOwnProperty('data')) {
+        data = QQRes
+      }
+      resp.body = {code: 200, data, msg: 'get success'}
       resolve(resp)
     }).catch((err)=>{
       resp.body.msg = err
