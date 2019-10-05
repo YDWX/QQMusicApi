@@ -14,7 +14,8 @@
 |format|数据格式|
 |jsonpCallback|jsonp回调函数名|
 |data|请求参数|
-### **歌曲详情**
+
+### **歌单详情**
 > GET https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg?type=1&json=1&utf8=1&onlysong=0&format=jsonp&g_tk=5381&jsonpCallback=playlistinfoCallback&loginUin=0&hostUin=0&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&disstid=3602407677
 
 #### 参数
@@ -169,7 +170,7 @@
 注：在返回数据中有一个zhida字段里面有一个type字段，其中0表示歌曲、2表示歌手、3表示专辑，其它值还未知
 该接口不支持跨域
 
-### **获取歌曲文件**
+### **获取歌曲**
 
 #### **获取歌曲vkey**
 > GET https://c.y.qq.com/base/fcgi-bin/fcg_music_express_mobile3.fcg?g_tk=1278911659&hostUin=0&format=jsonp&callback=callback&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&cid=205361747&uin=0&songmid=000OFXjz0Nljbh&filename=C400000OFXjz0Nljbh.m4a&guid=3655047200
