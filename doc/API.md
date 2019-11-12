@@ -178,11 +178,14 @@
 ##### 参数
 |参数名|说明|
 |--|--|
+|cid|可写死|
 |songmid|歌曲mid|
 |filename|C400+songmid+.m4a|
+|guid|可写死|
 |format|数据格式|
 |jsonpCallback|jsonp回调函数|
 
+注：vip歌曲和版权歌曲无法获取到vkey
 
 #### **获取歌曲文件**
 > GET http://dl.stream.qqmusic.qq.com/C400000OFXjz0Nljbh.m4a?vkey=33E6799DB60508E9561F3DDAA6ED69488988B51DE791617A2E34B02A3A48E9CCBD43595DC00D796EB6768D26134AAB1C3AD192C7044DE1A1&guid=3655047200&fromtag=66

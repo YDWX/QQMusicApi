@@ -1,4 +1,4 @@
-// vkey
+// 获取歌曲文件地址
 const consRouter = (router, request) => {
   const uri = 'https://c.y.qq.com/base/fcgi-bin/fcg_music_express_mobile3.fcg'
   const data = {
@@ -8,13 +8,21 @@ const consRouter = (router, request) => {
     guid: 3655047200
   }
   router.get('/', (req, res, next) => {
-    let {songmid, filename} = req.query
-    if (!songmid||!filename) {
+    let {songmid} = req.query
+    if (!songmid) {
       res.status(400).json({code: 400, data: null, msg: 'no keyword albummid'})
     }
+    const filename = `C400${songmid}.m4a`
     Object.assign(data, {songmid, filename})
     request('GET', uri, {}, data).then((resp)=>{
-      res.status(200).json(resp.body)
+      const file_resp = {
+        code: 200,
+        data: {
+          url: `http://dl.stream.qqmusic.qq.com/${filename}?vkey=${resp.body.data.items[0].vkey}`
+        },
+        msg: 'get success'
+      }
+      res.status(200).json(file_resp)
     }).catch((err)=>{
       console.log(err)
       res.status(500).json(err)
