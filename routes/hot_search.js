@@ -2,7 +2,6 @@
 const consRouter = (router, request) => {
   const uri = 'https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg'
   const data = {
-    g_tk: 5381,
     _: (new Date()).getTime()
   }
   router.get('/', (req, res, next) => {

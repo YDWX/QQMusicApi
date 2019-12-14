@@ -1,5 +1,5 @@
 # QQ音乐API
-> 所有api  jsonp格式都是可选的，jsonpCallback format等参数根据是否是jsonp而不同
+> 所有api中jsonp格式都是可选的，根据jsonpCallback format参数确定是否是jsonp，默认是json
 > _表示时间戳
 > 默认参数有：loginUin=0 hostUin=0 inCharset=utf8 outCharset=utf-8 platform=yqq needNewCode=0
 ### **推荐歌单**
@@ -11,8 +11,6 @@
 #### 参数
 |参数名|说明|
 |--|--|
-|format|数据格式|
-|jsonpCallback|jsonp回调函数名|
 |data|请求参数|
 
 ### **歌单详情**
@@ -22,8 +20,6 @@
 |参数名|说明|
 |--|--|
 |disstid|歌单id|
-|format|数据格式（可选）|
-|jsonpCallback|jsonp回调函数名（可选）|
 
 注：该参数需要referer请求头参数设置为https://c.y.qq.com/，需要使用代理
 
@@ -32,11 +28,7 @@
 > GET https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg?g_tk=701075963&uin=0&format=jsonp&jsonpCallback=callback&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&_=1512548815061
 
 #### 参数
-|参数名|说明|
-|--|--|
-|disstid|歌单id|
-|format|数据格式（可选）|
-|jsonpCallback|jsonp回调函数名（可选）|
+无参数
 
 注：该接口从QQ音乐移动web端推荐页面抓取的，最后一个**_**参数代表时间戳
 
@@ -48,8 +40,6 @@
 |--|--|
 |page|当前页|
 |pagesize|每页专辑数量|
-|format|数据格式（可选）|
-|jsonpCallback|jsonp回调函数名（可选）|
 
 
 ### **最新专辑（新）**
@@ -61,8 +51,7 @@
 |--|--|
 |sin|当前页|
 |num|每页专辑数量|
-|format|数据格式（可选）|
-|jsonpCallback|jsonp回调函数名（可选）|
+
 
 ### **专辑详情**
 > GET https://c.y.qq.com/v8/fcg-bin/fcg_v8_album_info_cp.fcg?albummid=001IskfD3Vncxo&g_tk=1278911659&hostUin=0&format=jsonp&jsonpCallback=callback&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0
@@ -72,8 +61,7 @@
 |参数名|说明|
 |--|--|
 |albummid|专辑id|
-|format|数据格式（可选）|
-|jsonpCallback|jsonp回调函数名（可选）|
+
 
 
 
@@ -87,8 +75,7 @@
 |--|--|
 |pagenum|当前页|
 |pagesize|每页数量|
-|format|数据格式（可选）|
-|jsonpCallback|jsonp回调函数名（可选）|
+
 
 
 ### **歌手详情**
@@ -101,8 +88,7 @@
 |singermid|歌手mid，从歌手列表获取|
 |begin|当前页|
 |num|每页歌曲数量|
-|format|数据格式（可选）|
-|jsonpCallback|jsonp回调函数名（可选）|
+
 
 ### **排行榜**
 > GET https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg?g_tk=5381&uin=0&format=jsonp&jsonpCallback=callback&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&_=1512554796112
@@ -110,8 +96,7 @@
 #### 参数
 |参数名|说明|
 |--|--|
-|format|数据格式（可选）|
-|jsonpCallback|jsonp回调函数名（可选）|
+
 
 ### **排行榜详情**
 > GET https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?g_tk=5381&uin=0&format=jsonp&jsonpCallback=callback&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&tpl=3&page=detail&type=top&topid=4&_=1512563984096
@@ -122,8 +107,7 @@
 |参数名|说明|
 |--|--|
 |topid|排行榜id|
-|format|数据格式（可选）|
-|jsonpCallback|jsonp回调函数名（可选）|
+
 
 注：topid 有以下几个取值，可能还有其他的
 > 3：欧美榜，4：流行指数，5：内地榜，16：韩国榜，26：热门歌曲，27：最新音乐，29：影视金曲，35：分享榜，36：随机推荐，52：原创榜
@@ -135,8 +119,7 @@
 #### 参数
 |参数名|说明|
 |--|--|
-|format|数据格式（可选）|
-|jsonpCallback|jsonp回调函数名（可选）|
+
 
 
 ### **搜索**
@@ -178,10 +161,10 @@
 ##### 参数
 |参数名|说明|
 |--|--|
-|cid|可写死|
+|cid|可写死，代码中已写死|
 |songmid|歌曲mid|
-|filename|C400+songmid+.m4a|
-|guid|可写死|
+|filename|C400+songmid+.m4a，代码中自动拼接|
+|guid|可写死，代码中已写死|
 |format|数据格式|
 |jsonpCallback|jsonp回调函数|
 

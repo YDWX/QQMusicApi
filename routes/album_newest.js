@@ -1,10 +1,10 @@
 // 最新专辑
+// TODO: 这个借口有问题，不是最新专辑，过时了
 const consRouter = (router, request) => {
   const uri = 'https://c.y.qq.com/v8/fcg-bin/album_library'
   const data = {
-    g_tk: 1278911659,
     cmd: 'firstpage',
-    sort: 1,
+    sort: 2,
     genre: 0,
     year: 1,
     pay: 0,
@@ -14,12 +14,10 @@ const consRouter = (router, request) => {
     pagesize: 20
   }
   router.get('/', (req, res, next) => {
-    let {pageNum, pagesize} = req.query
-    pageNum = pageNum>=0? pageNum:0
+    let {page, pagesize} = req.query
+    page = page>=0? page:0
     pagesize = pagesize>=20? pagesize:20
-
-    data.page = pageNum
-    data.pagesize = pagesize
+    Object.assign(data, {page, pagesize})
     request('GET', uri, {}, data).then((resp)=>{
       res.status(200).json(resp.body)
     }).catch((err)=>{

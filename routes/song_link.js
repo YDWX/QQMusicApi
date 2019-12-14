@@ -15,13 +15,26 @@ const consRouter = (router, request) => {
     const filename = `C400${songmid}.m4a`
     Object.assign(data, {songmid, filename})
     request('GET', uri, {}, data).then((resp)=>{
-      const file_resp = {
-        code: 200,
-        data: {
-          url: `http://dl.stream.qqmusic.qq.com/${filename}?vkey=${resp.body.data.items[0].vkey}`
-        },
-        msg: 'get success'
+      let file_resp = null
+      if (!resp.body.data.items[0].vkey){
+        file_resp = {
+          code: 500,
+          data: {
+            url: null
+          },
+          msg: 'get fail'
+        }
+      } else {
+        file_resp = {
+          code: 200,
+          data: {
+            url: `http://dl.stream.qqmusic.qq.com/${filename}?vkey=${resp.body.data.items[0].vkey}&guid=${data.guid}&fromtag=66`
+          },
+          msg: 'get success'
+        }
       }
+      
+      
       res.status(200).json(file_resp)
     }).catch((err)=>{
       console.log(err)

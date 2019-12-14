@@ -2,7 +2,6 @@
 const consRouter = (router, request) => {
   const uri = 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg'
   const data = {
-    g_tk: 5381,
     topid: null,
     page: 'detail',
     type: 'top'

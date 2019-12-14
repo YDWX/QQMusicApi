@@ -2,9 +2,7 @@
 const consRouter = (router, request) => {
   const uri = 'https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp'
   const data = {
-    g_tk: 5381,
     uin: 0,
-    notice: 0,
     w: '', // 关键词
     n: '', // 每页数量
     p: '', // 当前页

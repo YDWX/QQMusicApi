@@ -2,7 +2,6 @@
 const consRouter = (router, request) => {
   const uri = 'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg'
   const data = {
-    g_tk: 5381,
     disstid: null
   }
   router.get('/', (req, res, next) => {

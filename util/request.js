@@ -8,6 +8,7 @@
 const rp = require('request-promise')
 // 预设参数(为GET请求设置)
 let preParams = {
+  g_tk: 5381,
   loginUin: 0,
   hostUin: 0,
   inCharset: 'utf-8',
@@ -70,7 +71,7 @@ const createRequest = (method, uri, headers, data) => {
     headers,
     json: true
   }
-  Object.assign(data, preParams)
+  data = Object.assign(preParams, data)
   if (method==='GET') {
     options['qs'] = data
   }else {
