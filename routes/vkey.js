@@ -8,10 +8,11 @@ const consRouter = (router, request) => {
     guid: 3655047200
   }
   router.get('/', (req, res, next) => {
-    let {songmid, filename} = req.query
-    if (!songmid||!filename) {
+    let {songmid} = req.query
+    if (!songmid) {
       res.status(400).json({code: 400, data: null, msg: 'no keyword albummid'})
     }
+    const filename = `C400${songmid}.m4a`
     Object.assign(data, {songmid, filename})
     request('GET', uri, {}, data).then((resp)=>{
       res.status(200).json(resp.body)

@@ -9,6 +9,9 @@ const cache = require('apicache').middleware
 const initRoutes = require('./initRoutes')
 
 var app = express()
+const request = require('./util/request')
+
+global.RequestC = request
 
 // CORS
 app.use((req, res, next) => {

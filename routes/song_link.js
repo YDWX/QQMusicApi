@@ -1,4 +1,5 @@
 // 获取歌曲文件地址
+const vkey_service = require('../service/vkey')
 const consRouter = (router, request) => {
   const uri = 'https://c.y.qq.com/base/fcgi-bin/fcg_music_express_mobile3.fcg'
   const data = {
@@ -14,9 +15,9 @@ const consRouter = (router, request) => {
     }
     const filename = `C400${songmid}.m4a`
     Object.assign(data, {songmid, filename})
-    request('GET', uri, {}, data).then((resp)=>{
+    vkey_service(songmid).then((data)=>{
       let file_resp = null
-      if (!resp.body.data.items[0].vkey){
+      if (!data.body.data.items[0].vkey){
         file_resp = {
           code: 500,
           data: {
@@ -33,13 +34,12 @@ const consRouter = (router, request) => {
           msg: 'get success'
         }
       }
-      
-      
       res.status(200).json(file_resp)
     }).catch((err)=>{
       console.log(err)
       res.status(500).json(err)
     })
+
   })
   return router
 }
